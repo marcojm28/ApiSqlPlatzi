@@ -8,7 +8,7 @@ namespace PlatzisqlAzure.Models
 {
     public class ContactContext : DbContext
     {
-        public ContactContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+        public ContactContext(DbContextOptions<ContactContext> dbContextOptions) : base(dbContextOptions)
         {
 
         }
