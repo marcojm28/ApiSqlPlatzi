@@ -45,14 +45,27 @@ namespace PlatzisqlAzure.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(long id, [FromBody]Contact value)
         {
+            Contact contact = value;
+            var selectContact = contactContext.GetContacts.Find(id);
+            selectContact.Name = value.Name;
+            selectContact.LastName = value.LastName;
+            selectContact.Email = value.Email;
+            selectContact.PhoneNumber = value.PhoneNumber;
+            contactContext.SaveChanges();
+            return Ok("Contacto Modificado con éxito");
+
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(long id)
         {
+            var selectContact = contactContext.GetContacts.Find(id);
+            contactContext.Remove(selectContact);
+            contactContext.SaveChanges();
+            return Ok("El contacto de " + selectContact.Name + ", fue eliminado con éxito.");
         }
 
         ~ContactController()
