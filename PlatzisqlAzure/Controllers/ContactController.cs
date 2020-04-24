@@ -24,6 +24,37 @@ namespace PlatzisqlAzure.Controllers
             return contactContext.GetContacts.ToList();
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<Contact> Get(int id)
+        {
+            var SelectedContact = (from c in contactContext.GetContacts
+                                  where c.Id == id
+                                  select c).FirstOrDefault();
+            return SelectedContact;
+        }
+
+        // POST api/values
+        [HttpPost]
+        public IActionResult Post([FromBody]Contact value)
+        {
+            Contact contact = value;
+            contactContext.GetContacts.Add(contact);
+            contactContext.SaveChanges();
+            return Ok("Contacto Agregado");
+        }
+
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
+
         ~ContactController()
         {
             contactContext.Dispose();

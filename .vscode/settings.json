@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/5eb0b854-0e69-4d2f-b629-570d86cf7313/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/webpicontactmjuarez",
+    "appService.deploySubpath": "PlatzisqlAzure\\publish"
+}
